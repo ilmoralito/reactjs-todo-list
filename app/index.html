@@ -41,12 +41,16 @@
           this.setState(this.state)
         },
 
+        handleDeleteTask: function(index) {
+          conosle.log("index should be here")
+        },
+
         render: function() {
           return (
             <div>
               <h1>MyTodoList</h1>
               <Form addNewTask={this.handleAddNewTask} />
-              <List tasks={this.state.tasks} />
+              <List tasks={this.state.tasks} deleteTask={this.handleDeleteTask} />
             </div>
           )
         }
@@ -90,7 +94,7 @@
                     <tr>
                       <td>{task}</td>
                       <td>
-                        <a key={index}>Show</a>
+                        <a href="#" onClick={this.handleDeleteTask(index)}>Done</a>
                       </td>
                     </tr>
                   )
@@ -98,6 +102,12 @@
               </tbody>
             </table>
           )
+        },
+
+        handleDeleteTask: function(index, event) {
+          event.preventDefault()
+
+          this.props.deleteTask(index)
         }
       })
 
