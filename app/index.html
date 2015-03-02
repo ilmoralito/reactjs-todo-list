@@ -42,7 +42,8 @@
         },
 
         handleDeleteTask: function(index) {
-          conosle.log("index should be here")
+          delete this.state.tasks[index];
+          this.setState(this.state);
         },
 
         render: function() {
@@ -81,6 +82,12 @@
       })
 
       var List = React.createClass({
+        handleDeleteTask: function(index, event) {
+          event.preventDefault()
+
+          this.props.deleteTask(index)
+        },
+
         render: function() {
           return (
             <table className="table">
@@ -93,8 +100,10 @@
                   return (
                     <tr>
                       <td>{task}</td>
-                      <td>
-                        <a href="#" onClick={this.handleDeleteTask(index)}>Done</a>
+                      <td key={index}>
+                        <a href="#" onClick={this.handleDeleteTask.bind(null, index)}>
+                          Done
+                        </a>
                       </td>
                     </tr>
                   )
@@ -102,12 +111,6 @@
               </tbody>
             </table>
           )
-        },
-
-        handleDeleteTask: function(index, event) {
-          event.preventDefault()
-
-          this.props.deleteTask(index)
         }
       })
 
