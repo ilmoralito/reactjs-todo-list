@@ -89,6 +89,7 @@
         },
 
         render: function() {
+          var self = this;
           return (
             <table className="table">
               <thead>
@@ -101,7 +102,7 @@
                     <tr>
                       <td>{task}</td>
                       <td key={index}>
-                        <a href="#" onClick={this.handleDeleteTask.bind(null, index)}>
+                        <a href="#" onClick={self.handleDeleteTask.bind(null, index)}>
                           Done
                         </a>
                       </td>
