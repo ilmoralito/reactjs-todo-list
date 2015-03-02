@@ -37,9 +37,8 @@
         },
 
         handleAddNewTask: function(task) {
-          var tasks = this.state.tasks.push(task)
-          //this.setState({tasks:tasks})//error here
-          console.log(task, this.state.tasks)//its working, yahooo!!
+          this.state.tasks.push(task)
+          this.setState(this.state)
         },
 
         render: function() {
