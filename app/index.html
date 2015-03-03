@@ -31,8 +31,11 @@
       var Main = React.createClass({
         getInitialState: function() {
           return {
-            tasks:["Learn react", "Learn ASP MVC", "Keep studing grails"],
-            taskInputText:""
+            tasks:[
+              {name:"Learn react", done:false},
+              {name:"Learn ASP MVC", done:false},
+              {name:"Keep studing grails", done:false}
+            ]
           }
         },
 
@@ -64,7 +67,10 @@
           var task = this.refs.task.getDOMNode().value.trim()
 
           if (task) {
-            this.props.addNewTask(task)
+            this.props.addNewTask({
+              name:task,
+              done:false
+            })
           }
         },
 
@@ -100,7 +106,7 @@
                 {this.props.tasks.map(function(task, index) {
                   return (
                     <tr>
-                      <td>{task}</td>
+                      <td>{task.name}</td>
                       <td key={index}>
                         <a href="#" onClick={self.handleDeleteTask.bind(null, index)}>
                           Done
