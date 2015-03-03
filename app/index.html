@@ -71,6 +71,9 @@
               name:task,
               done:false
             })
+
+            this.refs.task.getDOMNode().value = ""
+            this.refs.task.getDOMNode().focus()
           }
         },
 
@@ -78,7 +81,7 @@
           return (
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <input ref="task" className="form-control" placeholder="Todo task..." />
+                <input ref="task" className="form-control" placeholder="Todo task..." autoFocus={true} />
               </div>
 
               <input type="submit" value="Add new task" className="btn btn-primary" />
