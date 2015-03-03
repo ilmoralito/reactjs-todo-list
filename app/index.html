@@ -45,7 +45,7 @@
         },
 
         handleDeleteTask: function(index) {
-          delete this.state.tasks[index];
+          this.state.tasks[index].done = true;
           this.setState(this.state);
         },
 
@@ -106,10 +106,10 @@
                 {this.props.tasks.map(function(task, index) {
                   return (
                     <tr>
-                      <td>{task.name}</td>
+                      <td className={task.done ? 'done' : ''}>{task.name}</td>
                       <td key={index}>
                         <a href="#" onClick={self.handleDeleteTask.bind(null, index)}>
-                          Done
+                          {!task.done ? 'Done' : ''}
                         </a>
                       </td>
                     </tr>
